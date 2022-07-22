@@ -1,0 +1,24 @@
+#cargo-features = ["profile-rustflags"]
+[package]
+name = "hport"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[profile.release]
+opt-level = 3  # Optimize for speed.
+lto = true # Link Time Optimization (LTO)
+codegen-units = 1 # Set this to 1 to allow for maximum size reduction optimizations:
+debug = false
+overflow-checks = true
+#panic = 'abort' # removes the need for this extra unwinding code.
+
+[dependencies]
+tokio = { version = "1", features = ["full"] }
+reqwest = { version = "0.11", default-features = false, features = [ "rustls-tls"] }
+futures = "0.3"
+serde = "1"
+serde_derive ="1"
+confy = "0.4"
+num_cpus = "1"
+cidr = "0.2.1"
